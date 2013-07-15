@@ -54,8 +54,10 @@ function remove_node (object)
 	}
 }
 
-mixin.make_node = make_node;
-mixin.get_node = get_node;
-mixin.remove_node = remove_node;
-
-module.exports = mixin;
+module.exports =
+{
+	mixin: mixin,
+	make_node: make_node,
+	get_node: get_node,
+	remove_node: remove_node
+};
