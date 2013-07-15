@@ -4,7 +4,39 @@ function mixin (target, object, property)
 {
 	if (object[property] === undefined)
 	{
-		throw new ReferenceError('Property "' + property + '" is undefined.');
+		if (deflate.enable_undefined_property_retrier)
+		{
+			Object.defineProperty
+			(
+				target, property,
+				{
+					get: function ()
+					{
+						if (object[property] === undefined)
+						{
+							return undefined;
+						}
+
+						mixin(target, object, property);
+
+						return target[property];
+					},
+
+					set: function (value)
+					{
+						object[property] = value;
+
+						mixin(target, object, property);
+
+						return target[property];
+					}
+				}
+			);
+		}
+		else
+		{
+			throw new ReferenceError('Property "' + property + '" is undefined.');
+		}
 	}
 
 	if (typeof object[property] === 'function')
