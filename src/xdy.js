@@ -2,6 +2,17 @@
 
 function mixin (target, object, property)
 {
+	var mixin_node;
+
+	if (target.__proto__.__mixin_node)
+	{
+		mixin_node = get_node(target);
+	}
+	else
+	{
+		mixin_node = make_node(target);
+	}
+
 	if (object[property] === undefined)
 	{
 		throw new ReferenceError('Property "' + property + '" is undefined.');
@@ -9,13 +20,13 @@ function mixin (target, object, property)
 
 	if (typeof object[property] === 'function')
 	{
-		target[property] = object[property].bind(object);
+		mixin_node[property] = object[property].bind(object);
 	}
 	else
 	{
 		Object.defineProperty
 		(
-			target, property,
+			mixin_node, property,
 			{
 				get: function () { return object[property]; },
 				set: function (value) { return object[property] = value; }
