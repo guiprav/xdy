@@ -1,0 +1,29 @@
+{
+	"name": "xdy",
+
+	"version": "0.0.0",
+
+	"author": "Guilherme Vieira <super.driver.512@gmail.com>",
+
+	"description": "Dynamically setup / remove prototype chain mixins.",
+
+	"keywords": [ "mixin", "metaprogramming" ],
+
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/n2liquid/xdy.git"
+	},
+
+	"license": "GPLv3",
+
+	"engines":
+	{
+		"node": ">=0.6"
+	},
+
+	"scripts":
+	{
+		"test": "vows tests/*.js --spec"
+	}
+}
