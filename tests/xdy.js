@@ -70,7 +70,7 @@ vows.describe('The xdy library').addBatch
 			target.mixin_method();
 		},
 
-		'whose mixed in functions track mixin object monkey-patches': function (t)
+		'whose mixed in functions track mixin object monkey-patching': function (t)
 		{
 			var target = new t.Target();
 			var mixin = new t.Mixin();
@@ -78,34 +78,30 @@ vows.describe('The xdy library').addBatch
 			var original = s.spy();
 			var patched = s.spy();
 
-			mixin.mixin_method = original;
+			mixin.mixin_function = original;
 
-			xdy.mixin(target, mixin, 'mixin_method');
+			xdy.mixin(target, mixin, 'mixin_function');
 
-			mixin.mixin_method = patched;
+			mixin.mixin_function = patched;
 
-			target.mixin_method();
+			target.mixin_function();
 
 			assert(patched.calledOnce, 'patched function should be called.');
 			assert(original.notCalled, 'original function should not be called.');
 		},
 
-		'whose mixed in properties always reflect their mixin object value': function (t)
+		'whose mixed in properties track mixin object changes': function (t)
 		{
 			var target = new t.Target();
 			var mixin = new t.Mixin();
 
-			mixin.mixin_property = 2;
+			mixin.mixin_property = 1;
 
 			xdy.mixin(target, mixin, 'mixin_property');
 
-			mixin.mixin_property = 3;
+			mixin.mixin_property = 2;
 
-			assert.deepEqual
-			(
-				target.mixin_property,
-				mixin.mixin_property
-			);
+			assert.deepEqual(target.mixin_property, mixin.mixin_property);
 		}
 	}
 }).export(module);
