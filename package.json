@@ -27,5 +27,11 @@
 	"scripts":
 	{
 		"test": "vows tests/*.js --spec"
+	},
+
+	"devDependencies":
+	{
+		"vows": "0.7.x",
+		"sinon": "1.7.x"
 	}
 }
