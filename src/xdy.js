@@ -1,3 +1,10 @@
 'use strict';
 
-module.exports = {};
+function mixin (target, mixin, member)
+{
+	target[member] = mixin[member];
+}
+
+module.exports = {
+	mixin: mixin
+};
