@@ -6,9 +6,9 @@ var s = require('sinon');
 
 var xdy = require('../');
 
-vows.describe('xdy').addBatch
+vows.describe('The xdy library').addBatch
 ({
-	'mixin functionality':
+	'has mixin functionality':
 	{
 		topic: function ()
 		{
@@ -24,7 +24,7 @@ vows.describe('xdy').addBatch
 			};
 		},
 
-		'can mix methods in': function (t)
+		'that mixes methods in': function (t)
 		{
 			var target = new t.Target();
 			var mixin = new t.Mixin();
@@ -39,7 +39,7 @@ vows.describe('xdy').addBatch
 			);
 		},
 
-		'can mix properties in': function (t)
+		'that mixes properties in': function (t)
 		{
 			var target = new t.Target();
 			var mixin = new t.Mixin();
