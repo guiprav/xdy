@@ -70,6 +70,26 @@ vows.describe('The xdy library').addBatch
 			target.mixin_method();
 		},
 
+		'whose mixed in functions track mixin object monkey-patches': function (t)
+		{
+			var target = new t.Target();
+			var mixin = new t.Mixin();
+
+			var original = s.spy();
+			var patched = s.spy();
+
+			mixin.mixin_method = original;
+
+			xdy.mixin(target, mixin, 'mixin_method');
+
+			mixin.mixin_method = patched;
+
+			target.mixin_method();
+
+			assert(patched.calledOnce, 'patched function should be called.');
+			assert(original.notCalled, 'original function should not be called.');
+		},
+
 		'whose mixed in properties always reflect their mixin object value': function (t)
 		{
 			var target = new t.Target();
