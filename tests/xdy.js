@@ -34,8 +34,8 @@ vows.describe('xdy').addBatch
 			assert.equal
 			(
 				target.mixin_method,
-				t.Mixin.prototype.mixin_method,
-				'target.mixin_method should be set to Mixin.mixin_method.'
+				mixin.mixin_method,
+				'target.mixin_method should be set to mixin.mixin_method.'
 			);
 		}
 	}
