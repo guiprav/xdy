@@ -2,23 +2,26 @@
 
 function mixin (target, mixin, member)
 {
-	if (typeof mixin[member] === 'function')
-	{
-		target[member] = function ()
+	Object.defineProperty
+	(
+		target, member,
 		{
-			return mixin[member].apply(mixin, arguments);
-		};
-	}
-	else
-	{
-		Object.defineProperty
-		(
-			target, member,
+			get: function ()
 			{
-				get: function () { return mixin[member]; }
+				if (typeof mixin[member] === 'function')
+				{
+					return function ()
+					{
+						return mixin[member].apply(mixin, arguments);
+					};
+				}
+				else
+				{
+					return mixin[member];
+				}
 			}
-		);
-	}
+		}
+	);
 }
 
 module.exports = {

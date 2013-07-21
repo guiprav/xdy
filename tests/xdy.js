@@ -88,6 +88,14 @@ vows.describe('The xdy library').addBatch
 
 			assert(patched.calledOnce, 'patched function should be called.');
 			assert(original.notCalled, 'original function should not be called.');
+
+			mixin.mixin_function = 'I am a crazy bastard.';
+
+			assert.deepEqual
+			(
+				target.mixin_function,
+				mixin.mixin_function
+			);
 		},
 
 		'whose mixed in properties track mixin object changes': function (t)
