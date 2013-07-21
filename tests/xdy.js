@@ -10,24 +10,10 @@ vows.describe('The xdy library').addBatch
 ({
 	'has mixin functionality':
 	{
-		topic: function ()
+		'that mixes methods in': function ()
 		{
-			function Target () {}
-
-			function Mixin () {}
-
-			Mixin.prototype.mixin_method = function () {};
-
-			return {
-				Target: Target,
-				Mixin: Mixin
-			};
-		},
-
-		'that mixes methods in': function (t)
-		{
-			var target = new t.Target();
-			var mixin = new t.Mixin();
+			var target = {};
+			var mixin = {};
 
 			mixin.mixin_method = s.spy();
 
@@ -38,10 +24,10 @@ vows.describe('The xdy library').addBatch
 			s.assert.calledOnce(mixin.mixin_method);
 		},
 
-		'that mixes properties in': function (t)
+		'that mixes properties in': function ()
 		{
-			var target = new t.Target();
-			var mixin = new t.Mixin();
+			var target = {};
+			var mixin = {};
 
 			mixin.mixin_property = 2;
 
@@ -55,10 +41,10 @@ vows.describe('The xdy library').addBatch
 			);
 		},
 
-		'whose mixed in functions\' `this` points to the mixin object': function (t)
+		'whose mixed in functions\' `this` points to the mixin object': function ()
 		{
-			var target = new t.Target();
-			var mixin = new t.Mixin();
+			var target = {};
+			var mixin = {};
 
 			mixin.mixin_method = function ()
 			{
@@ -70,10 +56,10 @@ vows.describe('The xdy library').addBatch
 			target.mixin_method();
 		},
 
-		'whose mixed in functions track mixin object monkey-patching': function (t)
+		'whose mixed in functions track mixin object monkey-patching': function ()
 		{
-			var target = new t.Target();
-			var mixin = new t.Mixin();
+			var target = {};
+			var mixin = {};
 
 			var original = s.spy();
 			var patched = s.spy();
@@ -98,10 +84,10 @@ vows.describe('The xdy library').addBatch
 			);
 		},
 
-		'whose mixed in properties track mixin object changes': function (t)
+		'whose mixed in properties track mixin object changes': function ()
 		{
-			var target = new t.Target();
-			var mixin = new t.Mixin();
+			var target = {};
+			var mixin = {};
 
 			mixin.mixin_property = 1;
 
