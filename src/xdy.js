@@ -11,7 +11,13 @@ function mixin (target, mixin, member)
 	}
 	else
 	{
-		target[member] = mixin[member];
+		Object.defineProperty
+		(
+			target, member,
+			{
+				get: function () { return mixin[member]; }
+			}
+		);
 	}
 }
 

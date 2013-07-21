@@ -68,6 +68,24 @@ vows.describe('The xdy library').addBatch
 			xdy.mixin(target, mixin, 'mixin_method');
 
 			target.mixin_method();
+		},
+
+		'whose mixed in properties always reflect their mixin object value': function (t)
+		{
+			var target = new t.Target();
+			var mixin = new t.Mixin();
+
+			mixin.mixin_property = 2;
+
+			xdy.mixin(target, mixin, 'mixin_property');
+
+			mixin.mixin_property = 3;
+
+			assert.deepEqual
+			(
+				target.mixin_property,
+				mixin.mixin_property
+			);
 		}
 	}
 }).export(module);
